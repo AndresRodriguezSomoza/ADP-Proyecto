@@ -18,13 +18,28 @@
       <div class="contenido-texto">
         <h3>{{ item.nivel }}</h3>
         <p>{{ item.descripcion }}</p>
-        <button class="boton-info">Ver más</button>
+  
+  <button (click)="abrirRequisitos(item)" class="boton-info">
+    {{ gradosSeleccionado === item ? 'Cerrar requisitos' : 'Requisitos de inscripción' }}
+  </button>
+
+  @if (gradosSeleccionado === item) {
+    <div class="lista-requisitos-desplegable">
+      <h4>Documentos requeridos:</h4>
+      <ul>
+        @for (req of item.requisitos; track req) {
+          <li>{{ req }}</li>
+                }
+              </ul>
+            </div>
+          }
+        </div>
+        </div>
+        }
       </div>
     </div>
-  }
-</div>
 
-</div> <footer class="pie-pagina"></footer>
+<footer class="pie-pagina"></footer>
 <footer class="pie-pagina">
   <div class="footer-contenido">
     

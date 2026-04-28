@@ -62,20 +62,25 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular/build:dev-server",
-          "configurations": {
-            "production": {
-              "buildTarget": "proyecto_walter_a_soundy:build:production"
-            },
-            "development": {
-              "buildTarget": "proyecto_walter_a_soundy:build:development"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "test": {
-          "builder": "@angular/build:unit-test"
-        }
+  "builder": "@angular/build:dev-server",
+  "options": {
+    "host": "0.0.0.0",
+    "port": 4200,
+    "allowedHosts": [
+      "localhost",
+      "192.168.1.119"
+    ]
+  },
+  "configurations": {
+    "production": {
+      "buildTarget": "proyecto_walter_a_soundy:build:production"
+    },
+    "development": {
+      "buildTarget": "proyecto_walter_a_soundy:build:development"
+    }
+  },
+  "defaultConfiguration": "development"
+},
       }
     }
   }

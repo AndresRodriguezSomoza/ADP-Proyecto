@@ -151,3 +151,33 @@
     font-size: 0.85rem;
     color: #b0b0b0;
 }
+
+// despliegue de menu de requisitos
+
+.lista-requisitos-desplegable {
+  background-color: #f4f7f9;
+  border-left: 4px solid #1E3A5F;
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 5px;
+  text-align: left; /* Para que la lista se lea bien */
+  animation: slideDown 0.3s ease-out;
+}
+
+.lista-requisitos-desplegable h4 {
+  margin: 0 0 8px 0;
+  font-size: 0.9rem;
+  color: #1E3A5F;
+}
+
+.lista-requisitos-desplegable ul {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 0.85rem;
+  color: #333;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
