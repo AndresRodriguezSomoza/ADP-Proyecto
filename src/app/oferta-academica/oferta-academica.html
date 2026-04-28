@@ -1,0 +1,75 @@
+<div class="hero-section">
+  <h1>Oferta academica Complejo Educativo Walter A. Soundy</h1>
+  <p>Inicio > Oferta Académica</p>
+</div>
+
+<div class="contenedor-principal">
+  <h2 class="seccion-titulo">Grados educativos actuales</h2>
+  <div class="linea-decorativa"></div>
+
+
+<div class="cuadricula-grados">
+  @for (item of listaGrados; track item.nivel) {
+    <div class="tarjeta" [style.border-top-color]="item.color">
+      <div class="contenedor-foto">
+        <img [src]="item.imagen" [alt]="item.nivel" class="foto-grado">
+      </div>
+
+      <div class="contenido-texto">
+        <h3>{{ item.nivel }}</h3>
+        <p>{{ item.descripcion }}</p>
+        <button class="boton-info">Ver más</button>
+      </div>
+    </div>
+  }
+</div>
+
+</div> <footer class="pie-pagina"></footer>
+<footer class="pie-pagina">
+  <div class="footer-contenido">
+    
+   <div class="footer-col">
+  <h3>Ubicación</h3>
+  <div class="linea-footer"></div>
+  <div class="mapa-contenedor">
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.543210!2d-89.284567!3d13.674890!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f6331a1a1a1a1a1%3A0x1a1a1a1a1a1a1a1a!2sComplejo%20Educativo%20Walter%20A.%20Soundy!5e0!3m2!1ses-419!2ssv!4v1714180000000!5m2!1ses-419!2ssv" 
+      width="100%" 
+      height="250" 
+      style="border:0;" 
+      allowfullscreen="" 
+      loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+    <p>Santa Tecla, La Libertad.</p>
+  </div>
+</div>
+
+    <div class="footer-col">
+      <h3>Contacto</h3>
+      <div class="linea-footer"></div>
+      <p><i class="link-icon">📍</i> Santa Tecla, La Libertad, El Salvador.</p>
+      <p><i class="link-icon">📞</i> +503 2229-9067</p>
+
+      
+      <div class="redes-sociales">
+        <span>f</span> <span>𝕏</span> <span>📸</span> <span>▶</span>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h3>Enlaces de Interés</h3>
+      <div class="linea-footer"></div>
+      <ul>
+        <li><a href="#">Página Oficial</a></li>
+        <li><a href="#">Registro Académico</a></li>
+        <li><a href="#">Calendario Escolar</a></li>
+      </ul>
+    </div>
+
+  </div>
+  
+  <div class="footer-inferior">
+    <p>© 2026 Centro Educativo Walter A. Soundy</p>
+  </div>
+</footer>
