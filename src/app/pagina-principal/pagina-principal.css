@@ -1,0 +1,182 @@
+/* CONTENEDOR PRINCIPAL */
+:host {
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(to bottom, #f2f2f2, #e6ecf2);
+  color: #2c2c2c;
+}
+
+/* TITULOS */
+h1, h2, h3 {
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 10px;
+}
+
+/* HERO */
+.hero {
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+              url('https://scontent.fsal3-1.fna.fbcdn.net/v/t39.30808-6/502466714_4064700297127881_6478500572190349468_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=2a1932&_nc_ohc=XhzKkGiCz2EQ7kNvwEaQxIA&_nc_oc=AdqQKU6jgAuWdOlc_WNsXavEv787wrEqxyELt7HzaDKgbKlgILv5SjGn9NGQYqApZ3E&_nc_zt=23&_nc_ht=scontent.fsal3-1.fna&_nc_gid=Q7dPkgj1tG1t2kFHEcBjSA&_nc_ss=7b2a8&oh=00_Af33-K5zQZK4GnC1PLphyplg2-g59k-6SFqwQRxxiUa5FA&oe=69F7644B');
+  background-size: cover;
+  background-position: center;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  padding: 20px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin: 15px 0;
+}
+
+.hero button {
+  background: #C9A34E;
+  border: none;
+  padding: 12px 25px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 25px;
+  transition: 0.3s ease;
+}
+
+.hero button:hover {
+  background: #a88432;
+  transform: scale(1.05);
+}
+
+/* ABOUT */
+.about {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 10%;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.about-text {
+  flex: 1;
+}
+
+.about-image img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* MISION Y VISION */
+.mission-vision {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 60px 10%;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  width: 300px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+/* OFERTA */
+.offer {
+  text-align: center;
+  padding: 60px 10%;
+}
+
+.levels {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.levels div {
+  background: white;
+  padding: 15px 25px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.levels div:hover {
+  transform: scale(1.05);
+}
+
+.offer button {
+  margin-top: 15px;
+  background: #1E3A5F;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* GALERIA */
+.gallery {
+  text-align: center;
+  padding: 60px 10%;
+}
+
+.gallery .images {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.gallery img {
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.gallery img:hover {
+  transform: scale(1.1);
+}
+
+/* FOOTER */
+footer {
+  background: #1E3A5F;
+  color: white;
+  text-align: center;
+  padding: 25px;
+  margin-top: 40px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .about {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .mission-vision {
+    flex-direction: column;
+    align-items: center;
+  }
+}
