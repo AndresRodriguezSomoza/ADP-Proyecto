@@ -1,0 +1,68 @@
+.sidebar {
+  background-color: #2F5D8C;
+  width: 260px;
+  height: calc(100vh - 70px);
+  position: fixed;
+  top: 70px;
+  left: 0;
+  border-right: 2px solid #C9A34E;
+  overflow-y: auto;
+}
+
+.sidebar-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar-header h3 {
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-item {
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.menu-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  color: white;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.menu-link:hover {
+  background-color: #1E3A5F;
+  color: #C9A34E;
+  padding-left: 2rem;
+}
+
+.menu-icon {
+  font-size: 1.25rem;
+}
+
+.menu-text {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.menu-link.active {
+  background-color: #1E3A5F;
+  color: #C9A34E;
+  border-left: 3px solid #C9A34E;
+}
+
+.menu-link.active .menu-icon {
+  color: #C9A34E;
+}

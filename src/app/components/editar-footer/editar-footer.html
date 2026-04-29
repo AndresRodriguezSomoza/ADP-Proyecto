@@ -1,0 +1,85 @@
+<div class="container-footer">
+  <div class="card">
+    <div class="card-header">
+      <h3>Editar Footer</h3>
+      <p class="subtitle">Configura la información de contacto del pie de página</p>
+    </div>
+    
+    <div class="card-body">
+      <!-- Mensajes -->
+      <div *ngIf="mensajeExito" class="alert alert-success">
+        {{ mensajeExito }}
+      </div>
+      
+      <div *ngIf="mensajeError" class="alert alert-danger">
+        {{ mensajeError }}
+      </div>
+
+      <!-- Formulario -->
+      <form (ngSubmit)="guardarCambios()">
+        <!-- Campo Teléfono -->
+        <div class="form-group">
+          <label class="form-label">
+            📞 Teléfono
+            <span class="hint">(formato: +503 0000-0000)</span>
+          </label>
+          <input 
+            type="tel" 
+            class="form-control" 
+            [(ngModel)]="telefono"
+            name="telefono"
+            (input)="aplicarMascaraTelefono()"
+            (blur)="onTelefonoBlur()"
+            placeholder="+503 1234-5678"
+            maxlength="17">
+          <small class="form-hint">Ejemplo: +503 1234-5678</small>
+        </div>
+
+        <!-- Campo Correo -->
+        <div class="form-group">
+          <label class="form-label">
+            📧 Correo Electrónico
+            <span class="hint">(formato: nombre@dominio.com)</span>
+          </label>
+          <input 
+            type="email" 
+            class="form-control" 
+            [(ngModel)]="correo"
+            name="correo"
+            (blur)="onCorreoBlur()"
+            placeholder="info@colegio.com">
+          <small class="form-hint">Ejemplo: contacto@instituto.edu.sv</small>
+        </div>
+
+        <!-- Botones -->
+        <div class="button-container">
+          <button type="submit" class="btn-guardar">
+            💾 Guardar Cambios
+          </button>
+          <button type="button" class="btn-cancelar" (click)="cancelarCambios()">
+            ❌ Cancelar
+          </button>
+        </div>
+      </form>
+
+      <!-- Vista previa del footer -->
+      <div class="preview-section">
+        <h4>📱 Vista Previa del Footer</h4>
+        <div class="footer-preview">
+          <div class="preview-item" *ngIf="telefono">
+            <span class="preview-icon">📞</span>
+            <span class="preview-text">{{ telefono }}</span>
+          </div>
+          <div class="preview-item" *ngIf="correo">
+            <span class="preview-icon">✉️</span>
+            <span class="preview-text">{{ correo }}</span>
+          </div>
+          <div *ngIf="!telefono && !correo" class="preview-empty">
+            <p>No hay información configurada</p>
+            <small>Agrega teléfono y/o correo para mostrarlos aquí</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+.navbar {
+  background-color: #1E3A5F;
+  border-bottom: 3px solid #C9A34E;
+  padding: 1rem 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.navbar-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo h2 {
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-link {
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 0.5rem 0;
+}
+
+.nav-link:hover {
+  color: #C9A34E;
+  border-bottom: 2px solid #C9A34E;
+}
+
+.user-name {
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  background-color: #2F5D8C;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+.nav-link.active {
+  color: #C9A34E;
+  border-bottom: 2px solid #C9A34E;
+}

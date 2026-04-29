@@ -1,0 +1,151 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header bg-primary text-white">
+      <h3>Editar Información de la Página Principal</h3>
+    </div>
+    
+    <div class="card-body">
+      <!-- Mensajes globales -->
+      <div *ngIf="mensajeExito" class="alert alert-success">
+        {{ mensajeExito }}
+      </div>
+      
+      <div *ngIf="mensajeError" class="alert alert-danger">
+        {{ mensajeError }}
+      </div>
+
+      <!-- Formulario -->
+      <form [formGroup]="infoForm" (ngSubmit)="guardarCambios()">
+        
+        <!-- Sección Quiénes Somos -->
+        <div class="mb-4">
+          <label for="quienesSomos" class="form-label fw-bold">
+            📝 ¿Quiénes Somos? <span class="required">*</span>
+          </label>
+          <textarea 
+            class="form-control" 
+            id="quienesSomos" 
+            rows="5"
+            formControlName="quienesSomos"
+            (blur)="validarCampoQuienesSomos()"
+            [class.is-invalid]="errorQuienesSomos"
+            placeholder="Describe quiénes son... (mínimo 10 caracteres)"></textarea>
+          <div class="invalid-feedback" *ngIf="errorQuienesSomos">
+            {{ errorQuienesSomos }}
+          </div>
+          <div class="form-hint">
+            <span [class.text-danger]="contadorQuienesSomos > maxLength" 
+                  [class.text-warning]="contadorQuienesSomos >= maxLength - 50 && contadorQuienesSomos <= maxLength">
+              {{ contadorQuienesSomos }}/{{ maxLength }} caracteres
+            </span>
+          </div>
+        </div>
+
+        <!-- Sección Misión -->
+        <div class="mb-4">
+          <label for="mision" class="form-label fw-bold">
+            🎯 Misión <span class="required">*</span>
+          </label>
+          <textarea 
+            class="form-control" 
+            id="mision" 
+            rows="5"
+            formControlName="mision"
+            (blur)="validarCampoMision()"
+            [class.is-invalid]="errorMision"
+            placeholder="Describe la misión... (mínimo 10 caracteres)"></textarea>
+          <div class="invalid-feedback" *ngIf="errorMision">
+            {{ errorMision }}
+          </div>
+          <div class="form-hint">
+            <span [class.text-danger]="contadorMision > maxLength" 
+                  [class.text-warning]="contadorMision >= maxLength - 50 && contadorMision <= maxLength">
+              {{ contadorMision }}/{{ maxLength }} caracteres
+            </span>
+          </div>
+        </div>
+
+        <!-- Sección Visión -->
+        <div class="mb-4">
+          <label for="vision" class="form-label fw-bold">
+            👁️ Visión <span class="required">*</span>
+          </label>
+          <textarea 
+            class="form-control" 
+            id="vision" 
+            rows="5"
+            formControlName="vision"
+            (blur)="validarCampoVision()"
+            [class.is-invalid]="errorVision"
+            placeholder="Describe la visión... (mínimo 10 caracteres)"></textarea>
+          <div class="invalid-feedback" *ngIf="errorVision">
+            {{ errorVision }}
+          </div>
+          <div class="form-hint">
+            <span [class.text-danger]="contadorVision > maxLength" 
+                  [class.text-warning]="contadorVision >= maxLength - 50 && contadorVision <= maxLength">
+              {{ contadorVision }}/{{ maxLength }} caracteres
+            </span>
+          </div>
+        </div>
+
+        <!-- Botón Guardar -->
+        <div class="d-flex gap-2 mt-3">
+          <button type="submit" class="btn-primary" [disabled]="infoForm.invalid">
+            💾 Guardar Cambios
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Vista previa con imágenes -->
+  <div class="card mt-4">
+    <div class="card-header bg-info text-white">
+      <h5>👀 Vista Previa</h5>
+    </div>
+    <div class="card-body">
+      
+      <div class="preview-section">
+        <h5>📝 ¿Quiénes Somos?</h5>
+        <div class="preview-content">
+          <div *ngIf="imagenQuienesSomos && imagenActivada('quienesSomos')" class="preview-imagen">
+            <img [src]="imagenQuienesSomos" alt="Imagen Quiénes Somos">
+          </div>
+          <div class="preview-texto">
+            <p>{{ infoForm.get('quienesSomos')?.value || '...' }}</p>
+          </div>
+        </div>
+      </div>
+      
+      <hr>
+      
+      <div class="preview-section">
+        <h5>🎯 Misión</h5>
+        <div class="preview-content">
+          <div *ngIf="imagenMision && imagenActivada('mision')" class="preview-imagen">
+            <img [src]="imagenMision" alt="Imagen Misión">
+          </div>
+          <div class="preview-texto">
+            <p>{{ infoForm.get('mision')?.value || '...' }}</p>
+          </div>
+        </div>
+      </div>
+      
+      <hr>
+      
+      <div class="preview-section">
+        <h5>👁️ Visión</h5>
+        <div class="preview-content">
+          <div *ngIf="imagenVision && imagenActivada('vision')" class="preview-imagen">
+            <img [src]="imagenVision" alt="Imagen Visión">
+          </div>
+          <div class="preview-texto">
+            <p>{{ infoForm.get('vision')?.value || '...' }}</p>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>

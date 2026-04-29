@@ -1,0 +1,337 @@
+<div class="container-imagenes">
+  <div class="card">
+    <div class="card-header">
+      <h3>Editar Imágenes</h3>
+    </div>
+
+    <div class="card-body">
+      <!-- Pestañas -->
+      <div class="tabs">
+        <button
+          class="tab-btn"
+          [class.active]="tabActiva === 'grados'"
+          (click)="tabActiva = 'grados'"
+        >
+          📷 Imágenes por Grado
+        </button>
+        <button
+          class="tab-btn"
+          [class.active]="tabActiva === 'slider'"
+          (click)="tabActiva = 'slider'"
+        >
+          🎠 Slider
+        </button>
+        <button
+          class="tab-btn"
+          [class.active]="tabActiva === 'galeria'"
+          (click)="tabActiva = 'galeria'"
+        >
+          🖼️ Galería
+        </button>
+      </div>
+
+      <!-- ========== PESTAÑA 1: IMÁGENES POR GRADO ========== -->
+      <div *ngIf="tabActiva === 'grados'" class="tab-content">
+        <div class="form-section">
+          <div *ngIf="errorImagen" class="validation-error">
+            {{ errorImagen }}
+          </div>
+
+          <h4>📸 Agregar / Editar Imagen por Grado</h4>
+
+          <div
+            class="warning-message"
+            *ngIf="tieneImagen(seccionSeleccionada) && !imagenPreview && !modoEdicion"
+          >
+            <span class="warning-icon">⚠️</span>
+            <span
+              >Ya existe una imagen en esta sección. Si guardas una nueva, se
+              reemplazará.</span
+            >
+          </div>
+
+          <div class="input-group">
+            <div class="input-field">
+              <label class="form-label">Seleccionar Imagen</label>
+              <input
+                type="file"
+                id="fileInput"
+                class="form-control"
+                accept="image/*"
+                (change)="onFileSelected($event)"
+              />
+            </div>
+            <div class="select-field">
+              <label class="form-label">Sección</label>
+              <select
+                class="form-control"
+                [(ngModel)]="seccionSeleccionada"
+                (change)="onSeccionChange()"
+              >
+                <option *ngFor="let sec of secciones" [value]="sec.valor">
+                  {{ sec.nombre }} {{ tieneImagen(sec.valor) ? '📷' : '⚪' }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="toggle-container">
+            <label class="toggle-label">
+              <span>Mostrar imagen en la página:</span>
+              <div class="toggle-switch">
+                <input type="checkbox" [(ngModel)]="imagenActivada" />
+                <span class="toggle-slider"></span>
+              </div>
+              <span class="toggle-status" [class.activada]="imagenActivada"
+                >{{ imagenActivada ? 'Activada' : 'Desactivada' }}</span
+              >
+            </label>
+          </div>
+
+          <div class="button-container">
+            <button class="btn-guardar" (click)="guardarImagen()">
+              💾 {{ modoEdicion ? 'Actualizar' : 'Guardar' }}
+            </button>
+            <button class="btn-limpiar" (click)="limpiarFormularioImagen()">
+              🗑️ Limpiar
+            </button>
+          </div>
+
+          <div *ngIf="imagenPreview" class="imagen-container">
+            <img
+              [src]="imagenPreview"
+              alt="Vista previa"
+              class="imagen-preview"
+            />
+          </div>
+        </div>
+
+        <div class="table-section">
+          <h4>📋 Imágenes Guardadas</h4>
+          <div class="imagenes-grid">
+            <div *ngFor="let img of imagenesGuardadas" class="imagen-card">
+              <img
+                [src]="img.imagenUrl"
+                alt="Vista previa"
+                class="imagen-thumb"
+              />
+              <div class="imagen-info">
+                <p><strong>{{ img.nombreSeccion }}</strong></p>
+                <span class="estado-badge" [class.activado]="img.activada"
+                  >{{ img.activada ? '✅ Activada' : '❌ Desactivada' }}</span
+                >
+              </div>
+              <div class="imagen-acciones">
+                <button class="btn-editar" (click)="editarImagen(img.seccion)">
+                  ✏️
+                </button>
+                <!--<button class="btn-eliminar" (click)="eliminarImagen(img.seccion)">🗑️</button>-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== PESTAÑA 2: SLIDER ========== -->
+      <div *ngIf="tabActiva === 'slider'" class="tab-content">
+        <div class="form-section">
+          <div *ngIf="errorSliderTitulo" class="validation-error">
+            {{ errorSliderTitulo }}
+          </div>
+          <div *ngIf="errorSliderImagen" class="validation-error">
+            {{ errorSliderImagen }}
+          </div>
+
+          <h4>🎠 Agregar Imagen al Slider</h4>
+          <p class="info-text">
+            Sube imágenes para el carrusel principal ({{ sliderImages.length
+            }}/{{ maxSliderImages }})
+          </p>
+
+          <div class="form-group">
+            <label class="form-label">Título del Slide</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="sliderTitulo"
+              placeholder="Ej: Bienvenidos a Nuestro Colegio"
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Imagen</label>
+            <input
+              type="file"
+              id="sliderFileInput"
+              class="form-control"
+              accept="image/*"
+              (change)="onSliderFileSelected($event)"
+            />
+          </div>
+
+          <div class="button-container">
+            <button
+              *ngIf="!sliderEditandoId"
+              class="btn-guardar"
+              (click)="agregarSliderImage()"
+              [disabled]="sliderImages.length >= maxSliderImages"
+            >
+              ➕ Agregar al Slider
+            </button>
+            <button
+              *ngIf="sliderEditandoId"
+              class="btn-actualizar"
+              (click)="actualizarSliderImage()"
+            >
+              ✏️ Actualizar
+            </button>
+            <button class="btn-limpiar" (click)="limpiarFormularioSlider()">
+              🗑️ Limpiar
+            </button>
+          </div>
+
+          <div *ngIf="sliderPreview" class="imagen-container">
+            <img
+              [src]="sliderPreview"
+              alt="Vista previa"
+              class="imagen-preview"
+            />
+          </div>
+        </div>
+
+        <div class="table-section">
+          <h4>📋 Slider ({{ sliderImages.length }}/{{ maxSliderImages }})</h4>
+          <div class="slider-grid">
+            <div *ngFor="let img of sliderImages" class="slider-card">
+              <img [src]="img.imagenUrl" alt="Slide" class="slider-thumb" />
+              <div class="slider-info">
+                <p><strong>{{ img.titulo }}</strong></p>
+                <label class="toggle-label-mini">
+                  <span>Activar</span>
+                  <div class="toggle-switch-mini">
+                    <input
+                      type="checkbox"
+                      [(ngModel)]="img.activada"
+                      (change)="toggleSliderActivado(img)"
+                    />
+                    <span class="toggle-slider-mini"></span>
+                  </div>
+                </label>
+              </div>
+              <div class="slider-acciones">
+                <button class="btn-editar" (click)="editarSliderImage(img)">
+                  ✏️
+                </button>
+                <!--<button class="btn-eliminar" (click)="eliminarSliderImage(img.id)">🗑️</button>-->
+              </div>
+            </div>
+          </div>
+          <div *ngIf="sliderImages.length === 0" class="empty-table">
+            <p>No hay imágenes en el Slider</p>
+            <small>Agrega imágenes usando el formulario</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== PESTAÑA 3: GALERÍA (sin descripción) ========== -->
+      <div *ngIf="tabActiva === 'galeria'" class="tab-content">
+        <div class="form-section">
+          <div *ngIf="errorGaleriaTitulo" class="validation-error">
+            {{ errorGaleriaTitulo }}
+          </div>
+          <div *ngIf="errorGaleriaImagen" class="validation-error">
+            {{ errorGaleriaImagen }}
+          </div>
+          <h4>🖼️ Agregar Imagen a la Galería</h4>
+          <p class="info-text">
+            Sube imágenes para la galería de fotos ({{ galeriaImages.length
+            }}/{{ maxGaleriaImages }})
+          </p>
+
+          <div class="form-group">
+            <label class="form-label">Título</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="galeriaTitulo"
+              placeholder="Ej: Graduación 2024"
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Imagen</label>
+            <input
+              type="file"
+              id="galeriaFileInput"
+              class="form-control"
+              accept="image/*"
+              (change)="onGaleriaFileSelected($event)"
+            />
+          </div>
+
+          <div class="button-container">
+            <button
+              *ngIf="!galeriaEditandoId"
+              class="btn-guardar"
+              (click)="agregarGaleriaImage()"
+              [disabled]="galeriaImages.length >= maxGaleriaImages"
+            >
+              ➕ Agregar a Galería
+            </button>
+            <button
+              *ngIf="galeriaEditandoId"
+              class="btn-actualizar"
+              (click)="actualizarGaleriaImage()"
+            >
+              ✏️ Actualizar
+            </button>
+            <!--<button class="btn-limpiar" (click)="limpiarFormularioGaleria()">🗑️ Limpiar</button>-->
+          </div>
+
+          <div *ngIf="galeriaPreview" class="imagen-container">
+            <img
+              [src]="galeriaPreview"
+              alt="Vista previa"
+              class="imagen-preview"
+            />
+          </div>
+        </div>
+
+        <div class="table-section">
+          <h4>
+            📋 Galería ({{ galeriaImages.length }}/{{ maxGaleriaImages }})
+          </h4>
+          <div class="galeria-grid">
+            <div *ngFor="let img of galeriaImages" class="galeria-card">
+              <img [src]="img.imagenUrl" alt="Galería" class="galeria-thumb" />
+              <div class="galeria-info">
+                <p><strong>{{ img.titulo }}</strong></p>
+                <label class="toggle-label-mini">
+                  <span>Activar</span>
+                  <div class="toggle-switch-mini">
+                    <input
+                      type="checkbox"
+                      [(ngModel)]="img.activada"
+                      (change)="toggleGaleriaActivado(img)"
+                    />
+                    <span class="toggle-slider-mini"></span>
+                  </div>
+                </label>
+              </div>
+              <div class="galeria-acciones">
+                <button class="btn-editar" (click)="editarGaleriaImage(img)">
+                  ✏️
+                </button>
+                <!--<button class="btn-eliminar" (click)="eliminarGaleriaImage(img.id)">🗑️</button>-->
+              </div>
+            </div>
+          </div>
+          <div *ngIf="galeriaImages.length === 0" class="empty-table">
+            <p>No hay imágenes en la Galería</p>
+            <small>Agrega imágenes usando el formulario</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
