@@ -1,1 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap');
+
+:root {
+	color-scheme: dark;
+	--navy-deep: #1e3a5f;
+	--blue-medium: #2f5d8c;
+	--gold-matte: #c9a34e;
+	--white-soft: #f2f2f2;
+	--gray-dark: #3a3a3a;
+	--ink: #0f172a;
+	--surface: rgba(242, 242, 242, 0.08);
+}
+
+html,
+body {
+	min-height: 100%;
+}
+
+body {
+	margin: 0;
+	font-family: 'Poppins', 'Roboto', system-ui, sans-serif;
+	background: var(--ink);
+	color: var(--white-soft);
+}
+
+* {
+	box-sizing: border-box;
+}

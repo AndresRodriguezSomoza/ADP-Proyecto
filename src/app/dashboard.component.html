@@ -1,0 +1,22 @@
+<main class="dashboard-shell" *ngIf="user() as currentUser">
+  <section class="dashboard-card">
+    <header>
+      <span class="eyebrow">Sesión activa</span>
+      <h1>Bienvenido, {{ currentUser.name }}</h1>
+      <p>Ingresaste como {{ currentUser.role }}.</p>
+    </header>
+
+    <div class="profile-grid">
+      <article>
+        <span>Email</span>
+        <strong>{{ currentUser.email }}</strong>
+      </article>
+      <article>
+        <span>Rol</span>
+        <strong>{{ currentUser.role }}</strong>
+      </article>
+    </div>
+
+    <button type="button" (click)="logout()">Cerrar sesión</button>
+  </section>
+</main>

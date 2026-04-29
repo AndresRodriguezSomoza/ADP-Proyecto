@@ -1,0 +1,5 @@
+#ignorar node_modules
+node_modules/
+
+#ignorar carpeta .angular
+.angular/
