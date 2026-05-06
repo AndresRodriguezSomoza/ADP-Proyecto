@@ -10,15 +10,15 @@ import { PaginaPrincipalComponent } from './components/pagina-principal/pagina-p
 import { OfertaAcademica } from './components/oferta-academica/oferta-academica';
 
 export const routes: Routes = [
-  // ========== RUTAS PÚBLICAS ==========
+  // RUTAS PÚBLICAS
   { path: '', component: PaginaPrincipalComponent },
   { path: 'inicio', component: PaginaPrincipalComponent },
   { path: 'oferta-academica', component: OfertaAcademica },
-  
-  // ========== LOGIN ==========
+
+  // LOGIN
   { path: 'login', component: LoginComponent },
-  
-  // ========== PANEL DE ADMINISTRACIÓN (protegido) ==========
+
+  // PANEL ADMIN
   {
     path: 'admin',
     component: AdminLayout,
@@ -31,7 +31,7 @@ export const routes: Routes = [
       { path: '', redirectTo: 'editar-info', pathMatch: 'full' }
     ]
   },
-  
-  // ========== REDIRECCIÓN PARA RUTAS NO ENCONTRADAS ==========
+
+  // RUTA NO ENCONTRADA
   { path: '**', redirectTo: '' }
 ];
