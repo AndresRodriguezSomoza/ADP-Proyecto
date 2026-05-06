@@ -1,0 +1,69 @@
+<app-navbar></app-navbar>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Complejo Educativo Walter A. Soundy</h1>
+    <p>Formando estudiantes con valores y excelencia académica en Santa Tecla</p>
+    <button (click)="scrollTop()">Conócenos</button>
+  </div>
+</section>
+
+<!-- QUIÉNES SOMOS -->
+<section class="about">
+  <div class="about-text">
+    <h2>¿Quiénes somos?</h2>
+    <p>{{ quienesSomos || 'Cargando información...' }}</p>
+  </div>
+  <div class="about-image" *ngIf="imagenQuienesSomos && imagenQuienesSomosActivada">
+    <img [src]="imagenQuienesSomos" alt="Institución educativa">
+  </div>
+</section>
+
+<!-- MISIÓN Y VISIÓN -->
+<section class="mission-vision">
+  <div class="card">
+    <h3>Misión</h3>
+    <p>{{ mision || 'Cargando información...' }}</p>
+    <div class="card-image" *ngIf="imagenMision && imagenMisionActivada">
+      <img [src]="imagenMision" alt="Misión">
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Visión</h3>
+    <p>{{ vision || 'Cargando información...' }}</p>
+    <div class="card-image" *ngIf="imagenVision && imagenVisionActivada">
+      <img [src]="imagenVision" alt="Visión">
+    </div>
+  </div>
+</section>
+
+<!-- OFERTA EDUCATIVA -->
+<section class="offer">
+  <h2>Nuestra oferta educativa</h2>
+  <p>
+    Ofrecemos formación académica desde los primeros niveles hasta bachillerato, preparando a nuestros estudiantes para su futuro educativo y profesional.
+  </p>
+  <div class="levels">
+    <div>Parvularia</div>
+    <div>Educación básica</div>
+    <div>Bachillerato</div>
+  </div>
+  <button>Ver más</button>
+</section>
+
+<!-- GALERÍA -->
+<section class="gallery">
+  <h2>Vida estudiantil</h2>
+  <div class="images">
+    <div *ngFor="let img of galeriaImages" class="gallery-item">
+      <img [src]="img.url" [alt]="img.titulo">
+    </div>
+    <div *ngIf="galeriaImages.length === 0" class="gallery-empty">
+      <p>No hay imágenes en la galería</p>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>
