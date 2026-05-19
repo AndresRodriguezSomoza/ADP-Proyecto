@@ -1,0 +1,11 @@
+edu\db\com\cewasbackend\resource\GradosResource.class
+edu\db\com\cewasbackend\resource\MultimediaResource.class
+edu\db\com\cewasbackend\HelloApplication.class
+edu\db\com\cewasbackend\dto\LoginRequest.class
+edu\db\com\cewasbackend\config\CorsFilter.class
+edu\db\com\cewasbackend\model\Grado.class
+edu\db\com\cewasbackend\model\Usuario.class
+edu\db\com\cewasbackend\model\Multimedia.class
+edu\db\com\cewasbackend\model\InstitucionConfig.class
+edu\db\com\cewasbackend\resource\InstitucionResource.class
+edu\db\com\cewasbackend\resource\UsuarioResource.class
